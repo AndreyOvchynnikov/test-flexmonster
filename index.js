@@ -15,15 +15,18 @@ function handleSubmit(event) {
     const { email, password, firstName, lastName, companyName } = event.target.elements;
     
     if (!validateEmail(email.value)) {
-        refs.message.innerHTML = createMessageMarup(errorMessage);
+        refs.message.innerHTML = ""
+        refs.message.append(createMessageMarkup(errorMessage));
         toggleModal()
         setTimeout(toggleModal, 2500)
         return
     }
-    refs.message.innerHTML = createMessageMarup(successMessage);
+    refs.message.innerHTML = ""
+    refs.message.append(createMessageMarkup(successMessage));
     toggleModal()
     setTimeout(toggleModal, 2500)
     
+
     const formData = [
         { name: "Email", value: email.value },
         { name: "Password", value: password.value },
@@ -31,23 +34,29 @@ function handleSubmit(event) {
         { name: "Last Name", value: lastName.value },
         { name: "Company Name", value: companyName.value },
     ]
+    refs.formDataContainer.innerHTML = ""
     const formDataMarkup = createDataMarkup(formData);
-    refs.formDataContainer.innerHTML = formDataMarkup;
+    console.log(formDataMarkup);
+    refs.formDataContainer.append(...formDataMarkup);
     event.target.reset();
 };
 
 function createDataMarkup(formData) {
     return formData.map(data => {
         const { name, value } = data
-        if (!value) {
+        if (value === "") {
             return
         }
-        return `<p>${name}: ${value}</p>`
-    }).join("");     
+        const element = document.createElement("p")
+        element.textContent = `${name}: ${value}`
+        return element
+    }).filter(el => el);     
 };
 
-function createMessageMarup(message) {
-    return `<h2>${message}</h2>`
+function createMessageMarkup(message) {
+    const element = document.createElement("h2")
+    element.textContent = `${message}`
+    return element
 };
 
 function validateEmail(email) {
@@ -61,6 +70,7 @@ function validateEmail(email) {
          }
     }
     return false;
+
 }
 
 function toggleModal() {
