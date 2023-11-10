@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+        integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Register page</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="title">Register form</h2>
+            <form class="register-form" form>
+                <label class="register-form__label">Email
+                    <span class="register-form__label-wrapper">
+                        <input type="email" name="email" class="register-form__input" required>
+                        <svg class="register-form__icon" width="18px" height="18px">
+                            <use href="./images/icons.svg#icon-email-black-18dp-1"></use>
+                        </svg>
+                    </span>
+                </label>
+                <label class="register-form__label">Password
+                    <span class="register-form__label-wrapper">
+                        <input type="password" name="password" class="register-form__input" required minlength="6">
+                        <svg class="register-form__icon" width="16px" height="16px">
+                            <use href="./images/icons.svg#icon-password"></use>
+                        </svg>
+                    </span>
+                </label>
+                <label class="register-form__label">First name
+                    <span class="register-form__label-wrapper">
+                        <input type="text" name="firstName" class="register-form__input" required minlength="3">
+                        <svg class="register-form__icon" width="20px" height="20px">
+                            <use href="./images/icons.svg#icon-person-black-18dp-1"></use>
+                        </svg>
+                    </span>
+                </label>
+                <label class="register-form__label">Last name
+                    <span class="register-form__label-wrapper">
+                        <input type="text" name="lastName" class="register-form__input" required minlength="3">
+                        <svg class="register-form__icon" width="20px" height="20px">
+                            <use href="./images/icons.svg#icon-person-black-18dp-1"></use>
+                        </svg>
+                    </span>
+                </label>
+                <label class="register-form__label">Company name
+                    <span class="register-form__label-wrapper">
+                        <input type="text" name="companyName" class="register-form__input" minlength="2">
+                        <svg class="register-form__icon" width="18px" height="18px">
+                            <use href="./images/icons.svg#icon-company"></use>
+                        </svg>
+                    </span>
+                </label>
+                <button type="submit" class="register-form__button">Sign up</button>
+            </form>
+        </div>
+        <div class="form-data">
+            <h2 class="title">Results:</h2>
+            <div form-data></div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
