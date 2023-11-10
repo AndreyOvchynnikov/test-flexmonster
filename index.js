@@ -23,35 +23,27 @@ function handleSubmit(event) {
     refs.message.innerHTML = createMessageMarup(successMessage);
     toggleModal()
     setTimeout(toggleModal, 2500)
-    const formData = {
-        email: email.value,
-        password: password.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        companyName: companyName.value,
-    }
+    
+    const formData = [
+        { name: "Email", value: email.value },
+        { name: "Password", value: password.value },
+        { name: "First Name", value: firstName.value },
+        { name: "Last Name", value: lastName.value },
+        { name: "Company Name", value: companyName.value },
+    ]
     const formDataMarkup = createDataMarkup(formData);
     refs.formDataContainer.innerHTML = formDataMarkup;
     event.target.reset();
 };
 
 function createDataMarkup(formData) {
-    const { email, password, firstName, lastName, companyName } = formData;
-    if (companyName) {
-        return `
-            <p>Email: ${email}</p>
-            <p>Password: ${password}</p>
-            <p>First Name: ${firstName}</p>
-            <p>Last Name: ${lastName}</p>
-            <p>Company Name: ${companyName}</p>
-            `
-            }
-    return `
-    <p>Email: ${email}</p>
-    <p>Password: ${password}</p>
-    <p>First Name: ${firstName}</p>
-    <p>Last Name: ${lastName}</p>
-    `     
+    return formData.map(data => {
+        const { name, value } = data
+        if (!value) {
+            return
+        }
+        return `<p>${name}: ${value}</p>`
+    }).join("");     
 };
 
 function createMessageMarup(message) {
