@@ -18,11 +18,15 @@
 </head>
 
 <body>
+    <div class="backdrop is-hidden" backdrop>
+        <div class="message-conteiner" message>
+        </div>
+    </div>
     <div class="container">
         <div class="form-container">
             <h2 class="title">Register form</h2>
             <form class="register-form" form>
-                <label class="register-form__label">Email
+                <label class="register-form__label">Email*
                     <span class="register-form__label-wrapper">
                         <input type="email" name="email" class="register-form__input" required>
                         <svg class="register-form__icon" width="18px" height="18px">
@@ -30,7 +34,7 @@
                         </svg>
                     </span>
                 </label>
-                <label class="register-form__label">Password
+                <label class="register-form__label">Password*
                     <span class="register-form__label-wrapper">
                         <input type="password" name="password" class="register-form__input" required minlength="8">
                         <svg class="register-form__icon" width="16px" height="16px">
@@ -38,7 +42,7 @@
                         </svg>
                     </span>
                 </label>
-                <label class="register-form__label">First name
+                <label class="register-form__label">First name*
                     <span class="register-form__label-wrapper">
                         <input type="text" name="firstName" class="register-form__input" required minlength="3">
                         <svg class="register-form__icon" width="20px" height="20px">
@@ -46,7 +50,7 @@
                         </svg>
                     </span>
                 </label>
-                <label class="register-form__label">Last name
+                <label class="register-form__label">Last name*
                     <span class="register-form__label-wrapper">
                         <input type="text" name="lastName" class="register-form__input" required minlength="3">
                         <svg class="register-form__icon" width="20px" height="20px">

@@ -1,17 +1,28 @@
 const refs = {
     form: document.querySelector('[form]'),
-    formData: document.querySelector('[form-data]'),
+    formDataContainer: document.querySelector('[form-data]'),
+    backdrop: document.querySelector('[backdrop]'),
+    message: document.querySelector('[message]')
   };
 
 refs.form.addEventListener('submit', handleSubmit);
 
+const successMessage = "Your subscribe has been sent successfully";
+const errorMessage = "Something wrong! Please check your email!";
+
 function handleSubmit(event) {
     event.preventDefault();
     const { email, password, firstName, lastName, companyName } = event.target.elements;
+    
     if (!validateEmail(email.value)) {
-        alert('Email is invalid!') 
+        refs.message.innerHTML = createMessageMarup(errorMessage);
+        toggleModal()
+        setTimeout(toggleModal, 2500)
         return
-        }
+    }
+    refs.message.innerHTML = createMessageMarup(successMessage);
+    toggleModal()
+    setTimeout(toggleModal, 2500)
     const formData = {
         email: email.value,
         password: password.value,
@@ -19,12 +30,12 @@ function handleSubmit(event) {
         lastName: lastName.value,
         companyName: companyName.value,
     }
-    const formDataMarkup = createMarkup(formData);
-    refs.formData.innerHTML = formDataMarkup;
+    const formDataMarkup = createDataMarkup(formData);
+    refs.formDataContainer.innerHTML = formDataMarkup;
     event.target.reset();
 };
 
-function createMarkup(formData) {
+function createDataMarkup(formData) {
     const { email, password, firstName, lastName, companyName } = formData;
     if (companyName) {
         return `
@@ -43,6 +54,10 @@ function createMarkup(formData) {
     `     
 };
 
+function createMessageMarup(message) {
+    return `<h2>${message}</h2>`
+};
+
 function validateEmail(email) {
     const dogIndex = email.indexOf("@");
     const dogSlice = email.slice(dogIndex + 1, email.length);
@@ -56,4 +71,7 @@ function validateEmail(email) {
     return false;
 }
 
+function toggleModal() {
+    refs.backdrop.classList.toggle('is-hidden');
+  }
 
