@@ -12,8 +12,6 @@ function handleSubmit(event) {
         alert('Email is invalid!') 
         return
         }
-    
-
     const formData = {
         email: email.value,
         password: password.value,
@@ -46,13 +44,12 @@ function createMarkup(formData) {
 };
 
 function validateEmail(email) {
-    const index = email.indexOf("@");
-    const slice = email.slice(index + 1, email.length);
-    if (slice.includes(".")) {
-        const newIndex = slice.indexOf(".")
-        const newSlice = slice.slice(newIndex + 1, slice.length)
-        if (!newSlice.includes(".")) {
-            console.log(newSlice);
+    const dogIndex = email.indexOf("@");
+    const dogSlice = email.slice(dogIndex + 1, email.length);
+    if (dogSlice.includes(".")) {
+        const pointIndex = dogSlice.indexOf(".")
+        const pointSlice = dogSlice.slice(pointIndex + 1, dogSlice.length)
+        if (!pointSlice.includes(".") && pointSlice.length > 0) {
             return true;
          }
     }

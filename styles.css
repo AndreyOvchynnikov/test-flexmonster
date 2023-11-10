@@ -22,6 +22,7 @@ body {
 }
 .form-data {    
     width: 300px;
+    position: relative;
     background-color: white;
     margin: 0 auto;
     padding-left: 40px;
@@ -30,6 +31,13 @@ body {
     padding-top: 10px;
     border: 1px solid rgba(33, 33, 33, 0.2);
     border-radius: 4px;
+}
+.logo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
 }
 .title {
     text-align: center;
@@ -122,6 +130,10 @@ body {
         width: 360px;
         margin: 0;
     }
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
 }
 @media screen and (min-width: 1200px) {
     .container {
@@ -135,5 +147,9 @@ body {
     }
     .form-data {
         width: 450px;
+    }
+    .logo {
+        width: 100px;
+        height: 100px;
     }
 }
