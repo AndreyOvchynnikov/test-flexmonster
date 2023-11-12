@@ -15,18 +15,17 @@ function handleSubmit(event) {
     const { email, password, firstName, lastName, companyName } = event.target.elements;
     
     if (!validateEmail(email.value)) {
-        refs.message.innerHTML = ""
+        refs.message.innerHTML = "";
         refs.message.append(createMessageMarkup(errorMessage));
-        toggleModal()
-        setTimeout(toggleModal, 2500)
+        toggleMessage();
+        setTimeout(toggleMessage, 2500);
         return
-    }
-    refs.message.innerHTML = ""
+    };
+    refs.message.innerHTML = "";
     refs.message.append(createMessageMarkup(successMessage));
-    toggleModal()
-    setTimeout(toggleModal, 2500)
+    toggleMessage();
+    setTimeout(toggleMessage, 2500);
     
-
     const formData = [
         { name: "Email", value: email.value },
         { name: "Password", value: password.value },
@@ -36,7 +35,6 @@ function handleSubmit(event) {
     ]
     refs.formDataContainer.innerHTML = ""
     const formDataMarkup = createDataMarkup(formData);
-    console.log(formDataMarkup);
     refs.formDataContainer.append(...formDataMarkup);
     event.target.reset();
 };
@@ -44,7 +42,7 @@ function handleSubmit(event) {
 function createDataMarkup(formData) {
     return formData.map(data => {
         const { name, value } = data
-        if (value === "") {
+        if (!value) {
             return
         }
         const element = document.createElement("p")
@@ -60,20 +58,24 @@ function createMessageMarkup(message) {
 };
 
 function validateEmail(email) {
+    const regexCheck =  String(email).match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
     const dogIndex = email.indexOf("@");
     const dogSlice = email.slice(dogIndex + 1, email.length);
-    if (dogSlice.includes(".")) {
-        const pointIndex = dogSlice.indexOf(".")
-        const pointSlice = dogSlice.slice(pointIndex + 1, dogSlice.length)
-        if (!pointSlice.includes(".") && pointSlice.length > 0) {
-            return true;
-         }
-    }
-    return false;
 
+        if (regexCheck && dogSlice.includes(".")) {
+                const pointIndex = dogSlice.indexOf(".")
+                const pointSlice = dogSlice.slice(pointIndex + 1, dogSlice.length)
+                    
+                if (!pointSlice.includes(".") && pointSlice.length > 0) {
+                            return true;
+                }
+        }
+    return false;
 }
 
-function toggleModal() {
+function toggleMessage() {
     refs.backdrop.classList.toggle('is-hidden');
   }
 
